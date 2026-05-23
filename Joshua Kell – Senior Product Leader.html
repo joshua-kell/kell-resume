@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Joshua Kell – Senior Product Leader</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --accent:#4c81df;--accent-dark:#3260af;--accent-bg:rgba(76,129,223,0.1);
+  --accent-text:rgb(35,72,145);--bg:#ffffff;--bg2:#f7f8fa;
+  --border:rgba(0,0,0,0.1);--text:#1a1a1a;--text2:#666;
+  --radius:12px;--radius-sm:8px;
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text)}
+.page{max-width:700px;margin:0 auto;padding:2rem 1rem 6rem}
+@media(min-width:900px){.page{max-width:860px}}
+@media(min-width:1200px){.page{max-width:1060px}}
+h1{font-size:36px;font-weight:500;letter-spacing:-0.5px}
+.tagline{font-size:16px;color:var(--accent);font-weight:500;margin:6px 0 12px}
+.contact{display:flex;gap:16px;flex-wrap:wrap;font-size:14px;color:#999;margin-bottom:16px}
+.contact span{display:flex;align-items:center;gap:5px}
+.summary{font-size:15px;color:var(--text2);line-height:1.7;margin-bottom:2.5rem}
+.section-label{font-size:11px;font-weight:600;letter-spacing:.12em;color:var(--accent);text-transform:uppercase;margin-bottom:1rem}
+.section-sep{margin-bottom:2.5rem}
+.era{border:.5px solid var(--border);border-radius:var(--radius);margin-bottom:10px;overflow:hidden}
+.era.active{border:2px solid var(--accent)}
+.era-header{display:flex;align-items:center;justify-content:space-between;padding:15px 18px;cursor:pointer;user-select:none;background:var(--bg)}
+.era-header:hover{background:var(--bg2)}
+.era-left{display:flex;align-items:center;gap:13px}
+.era-icon{width:42px;height:42px;border-radius:9px;background:#eaf0ff;overflow:hidden;flex-shrink:0;line-height:0}
+.era-chev{font-size:17px;color:var(--text2);transition:transform .2s;display:inline-block}
+.era-chev.open{transform:rotate(180deg)}
+.era-title{font-size:15px;font-weight:500}
+.era-sub{font-size:12.5px;color:var(--text2);margin-top:2px}
+.era-body{padding:10px 14px 14px;background:var(--bg);border-top:.5px solid var(--border);display:flex;flex-direction:column;gap:9px}
+.era.active .era-body{border-top-color:rgba(76,129,223,.2)}
+.hidden{display:none!important}
+.role-card{background:rgba(0,0,0,.016);border:.5px solid rgba(0,0,0,.055);border-radius:var(--radius-sm);padding:15px}
+.role-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:3px;flex-wrap:wrap;gap:4px}
+.role-title{font-size:14.5px;font-weight:500}
+.role-meta{font-size:11.5px;color:var(--text2);text-align:right;line-height:1.4}
+.company{font-size:15px;color:var(--accent);font-weight:500;margin-bottom:9px}
+.role-desc{font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:9px}
+.kh-label{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:5px}
+.bullets{list-style:none;padding:0;margin-bottom:10px}
+.bullets li{font-size:13px;color:var(--text2);padding:2.5px 0 2.5px 13px;position:relative;line-height:1.55}
+.bullets li::before{content:"•";position:absolute;left:0;color:var(--accent)}
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{font-size:11.5px;padding:3px 9px;border-radius:20px;background:var(--accent-bg);color:var(--accent-text)}
+.subroles{display:flex;flex-direction:column;gap:9px;margin-top:12px}
+.subrole-card{background:rgba(255,255,255,.75);border:.5px solid rgba(0,0,0,.055);border-radius:6px;padding:13px}
+.subrole-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:3px;flex-wrap:wrap;gap:4px}
+.subrole-title{font-size:13.5px;font-weight:500}
+.subrole-meta{font-size:11px;color:var(--text2);text-align:right}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:11px;margin-bottom:2.5rem}
+@media(min-width:680px){.skills-grid{grid-template-columns:repeat(3,1fr)}}
+.skill-card{background:var(--bg);border:.5px solid var(--border);border-radius:var(--radius);padding:15px}
+.skill-title{font-size:13.5px;font-weight:500;margin-bottom:9px}
+.skill-tags{display:flex;flex-wrap:wrap;gap:5px}
+.skill-tag{font-size:11px;padding:2.5px 7px;border-radius:4px;background:var(--bg2);color:var(--text2);border:.5px solid var(--border)}
+.edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:11px;margin-bottom:2.5rem}
+@media(min-width:680px){.edu-grid{grid-template-columns:repeat(3,1fr)}}
+.edu-card{background:var(--bg);border:.5px solid var(--border);border-radius:var(--radius);padding:15px}
+.edu-degree{font-size:14px;font-weight:500;line-height:1.4;margin-bottom:3px}
+.edu-school{font-size:12.5px;color:var(--accent);font-weight:500;margin-bottom:3px}
+.edu-detail{font-size:11px;color:var(--text2)}
+.ai-module{border:.5px dashed var(--border);border-radius:var(--radius);padding:22px;margin-bottom:2.5rem}
+.ai-header{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.ai-icon-wrap{width:42px;height:42px;border-radius:9px;background:#eaf0ff;overflow:hidden;flex-shrink:0;line-height:0}
+.ai-title{font-size:15px;font-weight:500}
+.ai-sub{font-size:12.5px;color:var(--text2);margin-top:2px}
+.ai-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:9px}
+.ai-card{background:var(--bg2);border:.5px dashed var(--border);border-radius:var(--radius-sm);padding:13px;transition:border .15s}
+.ai-card.clickable{cursor:pointer}
+.ai-card:hover{border:1.5px solid var(--accent)}
+.ai-card-label{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text2);margin-bottom:5px}
+.ai-card-title{font-size:13px;font-weight:500;margin-bottom:3px}
+.ai-card-desc{font-size:11.5px;color:var(--text2);line-height:1.45}
+.coming-soon{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:500;background:transparent;border:.5px dashed #EF9F27;color:#EF9F27;padding:4px 10px;border-radius:20px;margin-top:12px}
+.overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.45);z-index:10000;display:flex;align-items:center;justify-content:center;padding:20px}
+.overlay-box{background:#fff;border-radius:16px;padding:28px 32px;max-width:540px;width:100%;max-height:80vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+.overlay-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.overlay-hdr-title{font-size:16px;font-weight:500}
+.overlay-close{background:none;border:none;font-size:22px;cursor:pointer;color:#999;line-height:1}
+.overlay-section{padding-top:20px;margin-top:20px;border-top:.5px solid rgba(0,0,0,.1)}
+.overlay-section:first-child{padding-top:0;margin-top:0;border-top:none}
+.overlay-role{font-size:13.5px;font-weight:500;margin-bottom:2px}
+.overlay-co{font-size:12.5px;color:var(--accent);font-weight:500;margin-bottom:6px}
+.overlay-desc{font-size:13px;color:#666;line-height:1.6}
+.chat-btn{position:fixed;bottom:28px;right:28px;z-index:9999;background:var(--accent);color:#fff;border:none;border-radius:32px;padding:13px 20px;font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:8px;box-shadow:0 6px 24px rgba(76,129,223,.5);font-family:inherit}
+.chat-window{position:fixed;bottom:88px;right:28px;z-index:9999;width:340px;background:#fff;border:.5px solid rgba(0,0,0,.12);border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,.16);display:flex;flex-direction:column;overflow:hidden;max-height:480px;font-family:inherit}
+.chat-topbar{background:var(--accent);padding:13px 16px;display:flex;align-items:center;justify-content:space-between}
+.chat-topbar-title{color:#fff;font-weight:600;font-size:13.5px}
+.chat-close{background:none;border:none;color:rgba(255,255,255,.8);cursor:pointer;font-size:20px;line-height:1;padding:0}
+.chat-messages{flex:1;overflow-y:auto;padding:13px;display:flex;flex-direction:column;gap:9px;min-height:180px;max-height:300px}
+.msg{max-width:88%;padding:9px 12px;font-size:13px;line-height:1.55;border-radius:14px}
+.msg.assistant{align-self:flex-start;background:#f7f8fa;color:#1a1a1a;border-radius:14px 14px 14px 2px}
+.msg.user{align-self:flex-end;background:var(--accent);color:#fff;border-radius:14px 14px 2px 14px}
+.msg.thinking{align-self:flex-start;background:#f7f8fa;color:#999;border-radius:14px 14px 14px 2px}
+.chat-input-row{padding:10px 11px;border-top:.5px solid rgba(0,0,0,.1);display:flex;gap:7px}
+.chat-input{flex:1;font-size:13px;padding:8px 12px;border:.5px solid rgba(0,0,0,.15);border-radius:20px;background:#f7f8fa;color:#1a1a1a;outline:none;font-family:inherit}
+.chat-send{background:var(--accent);color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit}
+.chat-send:disabled{opacity:.6;cursor:default}
+</style>
+</head>
+<body>
+
+<div class="page">
+  <h1>Joshua Kell</h1>
+  <div class="tagline">Senior Product Leader &nbsp;•&nbsp; Product Builder &nbsp;•&nbsp; 2x VP Product</div>
+  <div class="contact">
+    <span>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      jlkell@gmail.com
+    </span>
+    <span>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.37 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6 6l.94-.94a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      312-451-8137
+    </span>
+    <span>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      /in/joshuakell
+    </span>
+    <span>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      Chicago, IL
+    </span>
+  </div>
+  <p class="summary">Senior product leader and consultant with 20+ years owning client engagements end-to-end, from shaping product vision with stakeholders to shipping and scaling digital products that drive lasting business outcomes. Equal parts strategic thinking and hands-on execution across EdTech, eCommerce, Travel, enterprise SaaS, and AI, with deep UX roots that inform every product decision.</p>
+
+  <!-- ── CAREER ── -->
+  <div class="section-sep">
+    <div class="section-label">Career Journey</div>
+
+    <!-- ERA F -->
+    <div class="era active" id="era-f">
+      <div class="era-header" onclick="toggleEra('f')">
+        <div class="era-left">
+          <div class="era-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 237" width="42" height="42">
+              <rect x=".5" y=".5" width="255" height="236" rx="57" fill="#eaf0ff" stroke="#dbe5fb" stroke-width="1"/>
+              <g transform="translate(56.32 46.82) scale(5.973)" fill="none" stroke="#3b7df6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="8" width="15" height="11" rx="2"/>
+                <path d="M7.5 8V6.7A1.2 1.2 0 0 1 8.7 5.5H12.3A1.2 1.2 0 0 1 13.5 6.7V8"/>
+                <path d="M3 12.5H18"/>
+                <path fill="#3b7df6" stroke="none" d="M19.5 3l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/>
+              </g>
+            </svg>
+          </div>
+          <div>
+            <div class="era-title">Fractional Leader &amp; Builder Era</div>
+            <div class="era-sub">2013 – Present &nbsp;•&nbsp; Independent product consulting, building &amp; teaching</div>
+          </div>
+        </div>
+        <span class="era-chev open" id="chev-f">▾</span>
+      </div>
+      <div class="era-body" id="body-f">
+        <div class="role-card">
+          <div class="role-header">
+            <div class="role-title">Fractional Head of Product &amp; Product Growth Consultant</div>
+            <div class="role-meta">2013 – Present<br/>Chicago &amp; Remote</div>
+          </div>
+          <div class="company">Kell Ventures</div>
+          <p class="role-desc">Engaged by growth-stage startups and established enterprises to lead product strategy and ship outcomes, owning product vision, roadmap, and hands-on execution across 0-to-1 builds, growth-stage scale, and operational transformation.</p>
+          <div class="subroles">
+            <div class="subrole-card">
+              <div class="subrole-header">
+                <div class="subrole-title">Fractional VP of Product</div>
+                <div class="subrole-meta">HRTech SaaS</div>
+              </div>
+              <div class="company">SilkRoad Technology (now RIVAL)</div>
+              <div class="kh-label">Key Highlights</div>
+              <ul class="bullets">
+                <li>Inherited 5 siloed product teams and fragmented codebases. Drove consensus around a microservices architecture and Unified Data Platform, laying the foundation for a PLG operating model replacing a failing sales-led strategy.</li>
+                <li>Drove 14% increase in customer acquisition and reduced churn from 12% to under 4% in under a year, attracting PE investment.</li>
+              </ul>
+              <div class="tags"><span class="tag">PLG</span><span class="tag">HRTech</span><span class="tag">SaaS</span><span class="tag">Churn Reduction</span><span class="tag">eLearning</span><span class="tag">Transformation</span></div>
+            </div>
+            <div class="subrole-card">
+              <div class="subrole-header">
+                <div class="subrole-title">Interim Head of Product</div>
+                <div class="subrole-meta">Travel / Hospitality</div>
+              </div>
+              <div class="company">Great Wolf Lodge</div>
+              <div class="kh-label">Key Highlights</div>
+              <ul class="bullets">
+                <li>Instituted a new data and analytics discipline across the product team, rebuilding roadmaps and prioritization so every product bet was grounded in hard data, user testing, and voice-of-customer inputs.</li>
+                <li>Delivered a 31% lift in booking conversion within 6 months of data-driven releases, plus 23% YoY mobile revenue growth.</li>
+              </ul>
+              <div class="tags"><span class="tag">Travel</span><span class="tag">Mobile</span><span class="tag">Booking Conversion</span><span class="tag">Data-Driven PM</span><span class="tag">Continuous Discovery</span></div>
+            </div>
+            <div class="subrole-card">
+              <div class="subrole-header">
+                <div class="subrole-title">Founding Product Lead</div>
+                <div class="subrole-meta">EdTech / AI</div>
+              </div>
+              <div class="company">Social Skills Hero</div>
+              <div class="kh-label">Key Highlights</div>
+              <ul class="bullets">
+                <li>Led 0-to-1 development of an AI-powered gamified therapy platform for children with autism, owning product vision, roadmap, UX design, and clinical trial partnerships with University of Illinois Chicago.</li>
+                <li>Product acquired by UIC during early buildout — clinical outcomes compelling enough to drive acquisition before full launch.</li>
+              </ul>
+              <div class="tags"><span class="tag">0-to-1</span><span class="tag">AI Therapy</span><span class="tag">EdTech</span><span class="tag">Healthcare</span><span class="tag">Acquired</span></div>
+            </div>
+            <div class="subrole-card">
+              <div class="subrole-header">
+                <div class="subrole-title">Senior Product Consultant</div>
+                <div class="subrole-meta">eCommerce SaaS</div>
+              </div>
+              <div class="company">Human Element</div>
+              <div class="kh-label">Key Highlights</div>
+              <ul class="bullets">
+                <li>Built white-label fulfillment analytics SaaS from zero to $50K+ ARR within two years, landing enterprise clients including Ford Motors.</li>
+              </ul>
+              <div class="tags"><span class="tag">0-to-1</span><span class="tag">SaaS</span><span class="tag">eCommerce</span><span class="tag">Enterprise</span><span class="tag">GTM</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="role-card">
+          <div class="role-header">
+            <div class="role-title">Instructor, Product Management 101</div>
+            <div class="role-meta">2018 – 2021<br/>Remote</div>
+          </div>
+          <div class="company">Product School</div>
+          <p class="role-desc">Recruited to teach live courses and lecture on best practices in Product Management, PLG, and Outcome-Driven Strategy.</p>
+          <div class="tags"><span class="tag">Teaching</span><span class="tag">PM Fundamentals</span><span class="tag">PLG</span><span class="tag">Outcome-Driven Strategy</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ERA C -->
+    <div class="era" id="era-c">
+      <div class="era-header" onclick="toggleEra('c')">
+        <div class="era-left">
+          <div class="era-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 237" width="42" height="42">
+              <rect x=".5" y=".5" width="255" height="236" rx="57" fill="#eaf0ff" stroke="#dbe5fb" stroke-width="1"/>
+              <g transform="translate(56.32 46.82) scale(5.973)" fill="none" stroke="#3b7df6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 6.5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-6.5L7 19v-3.5H6a2 2 0 0 1-2-2z"/>
+                <path fill="#3b7df6" stroke="none" d="M11.5 7l.7 2.3 2.3.7-2.3.7-.7 2.3-.7-2.3-2.3-.7 2.3-.7z"/>
+              </g>
+            </svg>
+          </div>
+          <div>
+            <div class="era-title">Consultant &amp; Enterprise Innovation Phase</div>
+            <div class="era-sub">2011 – 2016 &nbsp;•&nbsp; Expert operator across consumer tech &amp; Fortune 500</div>
+          </div>
+        </div>
+        <span class="era-chev" id="chev-c">▾</span>
+      </div>
+      <div class="era-body hidden" id="body-c">
+        <div class="role-card">
+          <div class="role-header">
+            <div class="role-title">Director of Product Innovation</div>
+            <div class="role-meta">Feb 2014 – Mar 2016<br/>Santa Monica, CA</div>
+          </div>
+          <div class="company">Cognizant Technology Solutions</div>
+          <p class="role-desc">Built and led a product innovation consulting practice from the ground up, serving as senior engagement lead for Fortune 500 clients including Disney, CVS, and Wells Fargo.</p>
+          <div class="kh-label">Key Highlights</div>
+          <ul class="bullets">
+            <li>Designed and launched Innovation Centers for CVS and Disney, giving both organizations a repeatable framework for injecting design thinking, Agile, and PLG principles into new product work.</li>
+            <li>Led cross-functional overhaul of Wells Fargo's global mobile banking app, merging 10 codebases to 1 and delivering a personalization-focused experience to tens of millions of users worldwide.</li>
+          </ul>
+          <div class="tags"><span class="tag">Innovation Centers</span><span class="tag">Fortune 500</span><span class="tag">Design Thinking</span><span class="tag">Agile</span><span class="tag">Lean</span></div>
+        </div>
+        <div class="role-card">
+          <div class="role-header">
+            <div class="role-title">Global Product Lead, Entertainment &amp; Lifestyles Group</div>
+            <div class="role-meta">Sep 2011 – Mar 2013<br/>Santa Monica, CA</div>
+          </div>
+          <div class="company">Yahoo!</div>
+          <p class="role-desc">Joined as Sr. Product Consultant and earned successive promotions before being brought on full-time, recognized for launching net-new mobile entertainment experiences and revenue streams.</p>
+          <div class="kh-label">Key Highlights</div>
+          <ul class="bullets">
+            <li>Launched Yahoo!'s first responsive mobile entertainment experiences and pioneered social integration via Facebook social graph, driving 229% YoY engagement growth during key events.</li>
+            <li>Developed high-value ad products for major entertainment awards shows and top-grossing movie premieres, contributing to 79% ARR growth across all verticals.</li>
+          </ul>
+          <div class="tags"><span class="tag">Mobile</span><span class="tag">Consumer Product</span><span class="tag">Ad Products</span><span class="tag">Social</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ERA B -->
+    <div class="era" id="era-b">
+      <div class="era-header" onclick="toggleEra('b')">
+        <div class="era-left">
+          <div class="era-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 237" width="42" height="42">
+              <rect x=".5" y=".5" width="255" height="236" rx="57" fill="#eaf0ff" stroke="#dbe5fb" stroke-width="1"/>
+              <g transform="translate(56.32 46.82) scale(5.973)" fill="none" stroke="#3b7df6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3.5 18l5-5 3 3L17 10.5"/>
+                <path d="M13 10.5H17V14.5"/>
+                <path fill="#3b7df6" stroke="none" d="M20 3l.7 1.9 1.9.7-1.9.7L20 8.2l-.7-1.9-1.9-.7 1.9-.7z"/>
+              </g>
+            </svg>
+          </div>
+          <div>
+            <div class="era-title">Breakout Product Leadership Era</div>
+            <div class="era-sub">2006 – 2011 &nbsp;•&nbsp; From Lead PM to VP Product roles across Retail AI, Travel &amp; EdTech</div>
+          </div>
+        </div>
+        <span class="era-chev" id="chev-b">▾</span>
+      </div>
+      <div class="era-body hidden" id="body-b">
+        <div class="role-card">
+          <div class="role-header">
+            <div class="role-title">VP Product Development</div>
+            <div class="role-meta">2010 – 2011<br/>Chicago, IL</div>
+          </div>
+          <div class="company">Talk3</div>
+          <p class="role-desc">Led end-to-end development of an AI and machine learning-powered mobile app marketing platform, one of the earliest consumer AI product plays in the retail market.</p>
+          <div class="kh-label">Key Highlights</div>
+          <ul class="bullets">
+            <li>Drove Agile development and launch of cross-platform mobile apps adopted by Kroger, Groupon Getaways, and Redbox, attracting multiple rounds of angel investment.</li>
+            <li>Pioneered AI-driven UX solutions using semantic technologies, node-based dynamic navigation, and social graph filtering.</li>
+          </ul>
+          <div class="tags"><span class="tag">AI/ML</span><span class="tag">Mobile Apps</span><span class="tag">Retail Tech</span><span class="tag">Early AI</span></div>
+        </div>
+        <div class="role-card">
+          <div class="role-header">
+            <div class="role-title">VP Product</div>
+            <div class="role-meta">2008 – 2009<br/>Chicago, IL</div>
+          </div>
+          <div class="company">Mobil Travel Guide</div>
+          <p class="role-desc">Led product strategy and execution for a luxury travel review and booking platform from first conversation to successful acquisition, all within one year.</p>
+          <div class="kh-label">Key Highlights</div>
+          <ul class="bullets">
+            <li>Defined product vision and content architecture for an immersive social destination experience targeting high-end travelers.</li>
+            <li>Drove 215% traffic growth, 300% increase in page views, and 115% revenue lift, contributing directly to acquisition outcome.</li>
+          </ul>
+          <div class="tags"><span class="tag">Travel</span><span class="tag">Acquisition</span><span class="tag">Luxury</span><span class="tag">0-to-1</span><span class="tag">Booking</span><span class="tag">Transformation</span><span class="tag">SEO</span><span class="tag">SEM</span></div>
+        </div>
+        <div class="role-card">
+          <div class="role-header">
+            <div class="role-title">Lead Product Manager</div>
+            <div class="role-meta">2006 – 2008<br/>Chicago, IL</div>
+          </div>
+          <div class="company">Monster.com (FastWeb.com)</div>
+          <p class="role-desc">Led product development, design, and engineering for FastWeb.com, a student-focused EdTech scholarship search engine and one of the largest of its kind.</p>
+          <div class="kh-label">Key Highlights</div>
+          <ul class="bullets">
+            <li>Launched 5 new higher education products and rebuilt the entire site architecture, driving 44% YoY revenue growth.</li>
+          </ul>
+          <div class="tags"><span class="tag">EdTech</span><span class="tag">Faceted Search</span><span class="tag">Transformation</span><span class="tag">AdTech</span><span class="tag">Site Architecture</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ERA U -->
+    <div class="era" id="era-u">
+      <div class="era-header" onclick="toggleEra('u')">
+        <div class="era-left">
+          <div class="era-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 237" width="42" height="42">
+              <rect x=".5" y=".5" width="255" height="236" rx="57" fill="#eaf0ff" stroke="#dbe5fb" stroke-width="1"/>
+              <g transform="translate(56.32 46.82) scale(5.973)" fill="none" stroke="#3b7df6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="3.5" width="6" height="4" rx="1"/>
+                <rect x="3" y="15.5" width="6" height="5" rx="1"/>
+                <rect x="9" y="15.5" width="6" height="5" rx="1"/>
+                <rect x="15" y="15.5" width="6" height="5" rx="1"/>
+                <path d="M12 7.5V11M6 11H18M6 11V15.5M12 11V15.5M18 11V15.5"/>
+              </g>
+            </svg>
+          </div>
+          <div>
+            <div class="era-title">User Experience Foundations</div>
+            <div class="era-sub">2001 – 2006 &nbsp;•&nbsp; UX strategy &amp; information architecture</div>
+          </div>
+        </div>
+        <span class="era-chev" id="chev-u">▾</span>
+      </div>
+      <div class="era-body hidden" id="body-u">
+        <div class="role-card">
+          <div class="role-header"><div class="role-title">Senior UX Strategist</div><div class="role-meta">2005 – 2006</div></div>
+          <div class="company">Agency.com</div>
+          <p class="role-desc">Led future-vision strategy, UX strategy, and mobile strategy for named brands including Motorola, HP, Wells Fargo, and Grainger.</p>
+          <div class="tags"><span class="tag">UX Strategy</span><span class="tag">Landing Page Optimization</span><span class="tag">Mobile Strategy</span><span class="tag">User Journeys</span><span class="tag">UI Design</span><span class="tag">Brand</span></div>
+        </div>
+        <div class="role-card">
+          <div class="role-header"><div class="role-title">Senior UX/Usability Lead</div><div class="role-meta">2003 – 2004</div></div>
+          <div class="company">Sapient</div>
+          <p class="role-desc">Conducted usability studies, competitive analyses, and user testing for major FinTech companies.</p>
+          <div class="tags"><span class="tag">UX Strategy</span><span class="tag">Usability</span><span class="tag">User Testing</span><span class="tag">FinTech</span><span class="tag">Healthcare</span></div>
+        </div>
+        <div class="role-card">
+          <div class="role-header"><div class="role-title">Information Architect</div><div class="role-meta">2001 – 2003</div></div>
+          <div class="company">Fry Inc</div>
+          <p class="role-desc">Provided interaction design for high-volume eCommerce sites including Amazon and Brookstone.</p>
+          <div class="tags"><span class="tag">IA</span><span class="tag">Taxonomy</span><span class="tag">Metadata</span><span class="tag">Interaction Design</span><span class="tag">eCommerce</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── AI MODULE ── -->
+  <div class="section-sep">
+    <div class="section-label">AI &amp; Emerging Tech Work</div>
+    <div class="ai-module">
+      <div class="ai-header">
+        <div class="ai-icon-wrap">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 237" width="42" height="42">
+            <rect x=".5" y=".5" width="255" height="236" rx="57" fill="#eaf0ff" stroke="#dbe5fb" stroke-width="1"/>
+            <g transform="translate(56.32 46.82) scale(5.973)" fill="none" stroke="#3b7df6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2.5" y="5.5" width="10" height="10" rx="1.3"/>
+              <rect x="4.7" y="7.7" width="5.6" height="5.6" rx="0.5" fill="#3b7df6" stroke="none" opacity=".85"/>
+              <path d="M4.5 3.5v2M7.5 3.5v2M10.5 3.5v2M0.5 8h2M0.5 10.5h2M0.5 13h2"/>
+              <path d="M14.5 13v3L12 20.5a.9.9 0 0 0 .8 1.4h5.8a.9.9 0 0 0 .8-1.4L17 16v-3"/>
+              <path d="M14 13h3.5"/>
+              <path fill="#3b7df6" stroke="none" d="M20 2l.7 1.9 1.8.6-1.8.6L20 7l-.7-1.9-1.8-.6 1.8-.6z"/>
+            </g>
+          </svg>
+        </div>
+        <div>
+          <div class="ai-title">Builds, Experiments &amp; AI-Native Projects</div>
+          <div class="ai-sub">Past product work, current builds, and live experiments</div>
+        </div>
+      </div>
+      <div class="ai-cards">
+        <div class="ai-card clickable" onclick="document.getElementById('ai-overlay').classList.remove('hidden')" style="border:1px solid rgba(0,0,0,.18);background:#fff">
+          <div class="ai-card-label">Past Product Work</div>
+          <div class="ai-card-title" style="color:#1a1a1a">AI/ML Product History</div>
+          <div class="ai-card-desc" style="color:#444">Talk3, Social Skills Hero, Stealth AR/ML startup — AI product work going back to 2010.</div>
+        </div>
+        <div class="ai-card" style="opacity:.75">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
+            <div class="ai-card-label" style="margin-bottom:0">Current Builds</div>
+            <span style="display:inline-flex;align-items:center;border:1px dashed #EF9F27;border-radius:20px;padding:3px 6px">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#EF9F27" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </span>
+          </div>
+          <div class="ai-card-title">Live Experiments</div>
+          <div class="ai-card-desc">Interactive resume, AI tooling demonstrations, and product experiments. More coming soon.</div>
+        </div>
+        <div class="ai-card" style="opacity:.75">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
+            <div class="ai-card-label" style="margin-bottom:0">Coming Soon</div>
+            <span style="display:inline-flex;align-items:center;border:1px dashed #EF9F27;border-radius:20px;padding:3px 6px">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#EF9F27" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </span>
+          </div>
+          <div class="ai-card-title">In Progress</div>
+          <div class="ai-card-desc">Additional projects in build. This section updates as work ships.</div>
+        </div>
+      </div>
+      <div class="coming-soon">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#EF9F27" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Sections populate as projects ship
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SKILLS ── -->
+  <div class="section-sep">
+    <div class="section-label">Core Skills &amp; Expertise</div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-title">Product Development</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Product Strategy</span><span class="skill-tag">Requirements Gathering</span><span class="skill-tag">Software Architecture</span><span class="skill-tag">Agile</span><span class="skill-tag">UX/Product Design</span><span class="skill-tag">Wireframing</span><span class="skill-tag">Rapid Prototyping</span><span class="skill-tag">Customer Personas</span><span class="skill-tag">Journey Mapping</span><span class="skill-tag">Product-Market Fit</span><span class="skill-tag">Product Launch</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-title">Product Growth</div>
+        <div class="skill-tags">
+          <span class="skill-tag">User Acquisition</span><span class="skill-tag">Personalization</span><span class="skill-tag">A/B Testing</span><span class="skill-tag">User Feedback Loops</span><span class="skill-tag">Data Analysis</span><span class="skill-tag">PLG</span><span class="skill-tag">Marketing Automation</span><span class="skill-tag">GTM Strategy</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-title">Industry Verticals</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Enterprise SaaS</span><span class="skill-tag">AI/ML Products</span><span class="skill-tag">Consumer Mobile</span><span class="skill-tag">EdTech</span><span class="skill-tag">Travel &amp; Hospitality</span><span class="skill-tag">eCommerce</span><span class="skill-tag">HRTech</span><span class="skill-tag">Streaming Media</span><span class="skill-tag">FinTech</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-title">Leadership</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Team Building</span><span class="skill-tag">PM Mentorship</span><span class="skill-tag">Client Engagement</span><span class="skill-tag">Stakeholder Mgmt</span><span class="skill-tag">Cross-functional</span><span class="skill-tag">Fractional Executive</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-title">Tools &amp; Technical</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Figma</span><span class="skill-tag">Sketch</span><span class="skill-tag">Webflow</span><span class="skill-tag">Lovable</span><span class="skill-tag">Optimizely</span><span class="skill-tag">Shopify</span><span class="skill-tag">Pendo</span><span class="skill-tag">Intercom</span><span class="skill-tag">UserVoice</span><span class="skill-tag">SQL/MySQL</span><span class="skill-tag">Python</span><span class="skill-tag">Jira</span><span class="skill-tag">Notion</span><span class="skill-tag">Linear</span><span class="skill-tag">GitHub</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── EDUCATION ── -->
+  <div class="section-sep">
+    <div class="section-label">Education</div>
+    <div class="edu-grid">
+      <div class="edu-card"><div class="edu-degree">Bachelor of Arts in English &amp; Writing</div><div class="edu-school">Miami University</div><div class="edu-detail">Oxford, OH</div></div>
+      <div class="edu-card"><div class="edu-degree">Product Strategy Certification</div><div class="edu-school">Northwestern Kellogg</div><div class="edu-detail">Evanston, IL</div></div>
+      <div class="edu-card"><div class="edu-degree">Marketing Strategy Certification</div><div class="edu-school">Cornell University</div><div class="edu-detail">eCornell</div></div>
+      <div class="edu-card"><div class="edu-degree">Agile Scrum Master Certification</div><div class="edu-school">Conscires Agile Practices</div></div>
+      <div class="edu-card"><div class="edu-degree">Data Analytics for Business Professionals</div><div class="edu-school">Udacity</div></div>
+      <div class="edu-card"><div class="edu-degree">AI for Product Managers Certificate</div><div class="edu-school">Builders Camp</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── AI OVERLAY ── -->
+<div class="overlay hidden" id="ai-overlay" onclick="document.getElementById('ai-overlay').classList.add('hidden')">
+  <div class="overlay-box" onclick="event.stopPropagation()">
+    <div class="overlay-hdr">
+      <div class="overlay-hdr-title">AI/ML Product History</div>
+      <button class="overlay-close" onclick="document.getElementById('ai-overlay').classList.add('hidden')">×</button>
+    </div>
+    <div class="overlay-section">
+      <div class="overlay-role">VP Product Development</div>
+      <div class="overlay-co">Talk3</div>
+      <div class="overlay-desc">One of the earliest consumer AI product plays in retail — an ML-powered mobile app marketing platform adopted by Kroger, Groupon Getaways, and Redbox. Pioneered semantic technologies, node-based dynamic navigation, and social graph filtering, attracting multiple rounds of angel investment.</div>
+    </div>
+    <div class="overlay-section">
+      <div class="overlay-role">Founding Product Lead</div>
+      <div class="overlay-co">Social Skills Hero</div>
+      <div class="overlay-desc">Led 0-to-1 development of an AI-powered gamified therapy platform for children with autism. Owned product vision, roadmap, UX design, and clinical trial partnerships with University of Illinois Chicago. Product acquired by UIC during buildout — outcomes compelling enough to drive acquisition before full launch.</div>
+    </div>
+    <div class="overlay-section">
+      <div class="overlay-role">Product &amp; GTM Lead</div>
+      <div class="overlay-co">Stealth AR/ML Sports Startup</div>
+      <div class="overlay-desc">Defined product roadmap and go-to-market strategy for an AR/ML platform targeting professional sports organizations. Landed first paying customer — a professional US sports org — during initial buildout phase.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── CHAT WIDGET ── -->
+<button class="chat-btn" onclick="toggleChat()">
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+  Ask About Joshua
+</button>
+
+<div class="chat-window hidden" id="chat-window">
+  <div class="chat-topbar">
+    <span class="chat-topbar-title">Ask About Joshua</span>
+    <button class="chat-close" onclick="toggleChat()">×</button>
+  </div>
+  <div class="chat-messages" id="chat-messages">
+    <div class="msg assistant">Hi! I have deep knowledge of Joshua's background. Ask me anything about his experience, skills, or fit for a role.</div>
+  </div>
+  <div class="chat-input-row">
+    <input class="chat-input" id="chat-input" placeholder="Ask a question..." onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMsg()}"/>
+    <button class="chat-send" id="chat-send" onclick="sendMsg()">Send</button>
+  </div>
+</div>
+
+<script>
+const SYS = `You are an AI assistant embedded in Joshua Kell's interactive resume. Answer questions from recruiters and hiring managers about Joshua's background, skills, and fit for roles. Be direct, warm, and confident. Speak about Joshua in third person. Keep answers 2-4 sentences unless more detail is explicitly requested. Never be evasive. If something is not in his background, say so honestly.
+
+DO NOT: speculate about salary, make promises on Joshua's behalf, discuss personal matters, or answer questions unrelated to his professional background.
+
+Joshua Kell. Chicago area (Barrington, IL). 20+ years product leadership. Targeting VP Product and CPO-level roles. Full-time preferred, open to contract or fractional. Target industries: EdTech, eCommerce, Travel & Hospitality, AI/ML. Remote or hybrid. Actively searching now.
+
+Kell Ventures (2013-present): SilkRoad/RIVAL — churn 12% to under 4%, +14% acquisition, PE investment, full PLG transformation. Great Wolf Lodge — +31% booking conversion in 6 months, +23% YoY mobile revenue. Social Skills Hero — 0-to-1 AI therapy platform for autism, acquired by UIC. Human Element — fulfillment analytics SaaS zero to $50K+ ARR, Ford Motors. Hyatt Hotels — mobile app strategy consultant.
+
+Product School (2018-2021): Instructor. Cognizant (2014-2016): Director Product Innovation, Wells Fargo mobile banking merged 10 codebases to 1, tens of millions of users, Innovation Centers for Disney and CVS. Yahoo! (2011-2013): Global Product Lead, +229% YoY engagement, +79% ARR. Talk3 (2010-2011): VP Product, early consumer AI, Kroger/Groupon/Redbox. Mobil Travel Guide (2008-2009): VP Product, inception to acquisition in one year, +215% traffic, +115% revenue. Monster/FastWeb (2006-2008): Lead PM, +44% YoY revenue. UX foundations (2001-2006): Agency.com, Sapient, Fry Inc.
+
+Education: BA English & Writing Miami University; Product Strategy Northwestern Kellogg; Marketing Strategy Cornell; Agile Scrum Conscires; Data Analytics Udacity; AI for PMs Builders Camp.`;
+
+const msgs = [{role:"assistant",content:"Hi! I have deep knowledge of Joshua's background. Ask me anything about his experience, skills, or fit for a role."}];
+let loading = false;
+
+function toggleChat() {
+  document.getElementById('chat-window').classList.toggle('hidden');
+}
+
+function toggleEra(id) {
+  const ERAS = ['f','c','b','u'];
+  const isOpen = !document.getElementById('body-'+id).classList.contains('hidden');
+  ERAS.forEach(e => {
+    document.getElementById('body-'+e).classList.add('hidden');
+    document.getElementById('chev-'+e).classList.remove('open');
+    document.getElementById('era-'+e).classList.remove('active');
+  });
+  if (!isOpen) {
+    document.getElementById('body-'+id).classList.remove('hidden');
+    document.getElementById('chev-'+id).classList.add('open');
+    document.getElementById('era-'+id).classList.add('active');
+  }
+}
+
+function appendMsg(role, text) {
+  const el = document.createElement('div');
+  el.className = 'msg ' + role;
+  el.textContent = text;
+  document.getElementById('chat-messages').appendChild(el);
+  el.scrollIntoView({behavior:'smooth'});
+  return el;
+}
+
+async function sendMsg() {
+  if (loading) return;
+  const inp = document.getElementById('chat-input');
+  const text = inp.value.trim();
+  if (!text) return;
+  inp.value = '';
+  msgs.push({role:'user', content:text});
+  appendMsg('user', text);
+  loading = true;
+  document.getElementById('chat-send').disabled = true;
+  const thinking = appendMsg('thinking', 'Thinking...');
+  try {
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        model: 'claude-haiku-4-5-20251001',
+        max_tokens: 1024,
+        system: SYS,
+        messages: msgs
+      })
+    });
+    const data = await res.json();
+    const reply = data.content?.[0]?.text ?? 'Sorry, something went wrong.';
+    msgs.push({role:'assistant', content:reply});
+    thinking.remove();
+    appendMsg('assistant', reply);
+  } catch(e) {
+    thinking.remove();
+    appendMsg('assistant', 'Something went wrong. Please try again.');
+  }
+  loading = false;
+  document.getElementById('chat-send').disabled = false;
+}
+</script>
+</body>
+</html>
